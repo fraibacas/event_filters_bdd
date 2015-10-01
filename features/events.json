@@ -1,0 +1,139 @@
+{ "events":
+			[
+				{
+					"event_id"         :   "evt_text_filters",
+					"Severity"         :   "Error",
+					"Resource"         :   "test_device",
+					"Component"        :   "test_component",
+					"Summary"          :   "zenoss_test evt_text_filters: The quick brown fox jumps over the lazy dog",
+					"Event Class"      :   "/Grandparent/Parent/Child",
+					"Device Class"     :   "/Grandparent/Parent/Child",
+					"IP Address"       :   "128.10.10.1",
+					"Agent"            :   "zentest",
+					"Collector"        :   "usa_collector1",
+					"Event Class Key"  :   "myeventclasskey",
+					"Event Group"      :   "thisismygroup",
+					"Event ID"         :   "whatever",
+					"Event Key"        :   "randomEventKey",
+					"Fingerprint"      :   "my_index_fingerprint",
+					"Groups"           :   "/Group/Subgroup",
+					"Location"         :   "/UnitedStates/Austin",
+					"Message"          :   "evt_text_filters: The quick brown fox jumps over the lazy dog",
+					"Owner"            :   "name.surname",
+					"Systems"          :   "/Systems/hello"
+				},
+
+				{
+					"event_id"         :   "evt_empty_text_filters",
+					"Severity"         :   "Error",
+					"Resource"         :   "test_device",
+					"Summary"          :   "zenoss_test evt_empty_text_filters: The quick brown fox jumps over the lazy dog",
+					"Event Class"      :   "/Grandparent/Parent/Child",
+					"Event ID"         :   "whatever",
+					"Fingerprint"      :   "my_index_fingerprint"
+				},
+
+				{
+					"event_id"         :   "evt_1",
+					"Status"           :   "Closed",
+					"Severity"         :   "Error",
+					"Count"            :   1,
+					"Resource"         :   "Resource_1",
+					"Component"        :   "Component_1",
+					"Summary"          :   "zenoss_test evt_1 Summary_1",
+					"Event Class"      :   "Event_Class_1",
+					"Device Class"     :   "Device_Class_1",
+					"IP Address"       :   "1.1.1.1",
+					"Agent"            :   "Agent_1",
+					"Collector"        :   "Collector_1",
+					"Event Class Key"  :   "Event_Class_Key_1",
+					"Event Group"      :   "Event_Group_1",
+					"Event ID"         :   "whatever",
+					"Event Key"        :   "Event_Key_1",
+					"Fingerprint"      :   "Fingerprint_1",
+					"Groups"           :   "Groups_1",
+					"Location"         :   "Location_1",
+					"Message"          :   "Message_1",
+					"Owner"            :   "Owner_1",
+					"Systems"          :   "Systems_1",
+					"Device Priority"  :   "High",
+					"Production State" :   "Pre-Production",
+					"First Seen"       :   1443052800000,
+					"Last Seen"        :   1443052800000,
+					"State Change"     :   1443052800000
+				},
+
+				{
+					"event_id"         :   "evt_2",
+					"Status"           :   "Aged",
+					"Severity"         :   "Critical",
+					"Count"            :   2,
+					"Resource"         :   "Resource_2",
+					"Component"        :   "Component_2",
+					"Summary"          :   "zenoss_test evt_2 Summary_2",
+					"Event Class"      :   "Event_Class_2",
+					"Device Class"     :   "Device_Class_2",
+					"IP Address"       :   "2.2.2.2",
+					"Agent"            :   "Agent_2",
+					"Collector"        :   "Collector_2",
+					"Event Class Key"  :   "Event_Class_Key_2",
+					"Event Group"      :   "Event_Group_2",
+					"Event ID"         :   "whatever",
+					"Event Key"        :   "Event_Key_2",
+					"Fingerprint"      :   "Fingerprint_2",
+					"Groups"           :   "Groups_2",
+					"Location"         :   "Location_2",
+					"Message"          :   "Message_2",
+					"Owner"            :   "Owner_2",
+					"Systems"          :   "Systems_2",
+					"Device Priority"  :   "Highest",
+					"Production State" :   "Production",
+					"First Seen"       :   1443134289157,
+					"Last Seen"        :   1443134289157,
+					"State Change"     :   1443134289157
+				},
+				{
+					"event_id"         :   "ip_evt_1",
+					"Resource"         :   "ip_test_resource_1",
+					"Summary"          :   "zenoss_test ip_evt_1",
+					"Event Class"      :   "/Grandparent/Parent/Child",
+					"IP Address"       :   "10.100.1.1"
+				},
+
+				{
+					"event_id"         :   "ip_evt_2",
+					"Resource"         :   "ip_test_resource_2",
+					"Summary"          :   "zenoss_test ip_evt_2",
+					"Event Class"      :   "/Grandparent/Parent/Child",
+					"IP Address"       :   "10.111.1.2"
+				},
+
+				{
+					"event_id"         :   "ip_evt_3",
+					"Resource"         :   "ip_test_resource_3",
+					"Summary"          :   "zenoss_test ip_evt_3",
+					"Event Class"      :   "/Grandparent/Parent/Child",
+					"IP Address"       :   "10.102.1.3"
+				},
+
+				{
+					"event_id"         :   "ip_evt_4",
+					"Resource"         :   "ip_test_resource_4",
+					"Summary"          :   "zenoss_test ip_evt_4",
+					"Event Class"      :   "/Grandparent/Parent/Child",
+					"IP Address"       :   "10.200.10.4"
+				},
+
+				{
+					"event_id"         :   "evt_multivalued_details",
+					"Severity"         :   "Error",
+					"Resource"         :   "test_device",
+					"Summary"          :   "zenoss_test evt_multivalued_details",
+					"Event Class"      :   "/Grandparent/Parent/Child",
+					"Event ID"         :   "whatever",
+					"Fingerprint"      :   "my_index_fingerprint",
+					"Systems"		   :   ["/dog/cat", "/cow/duck"],
+					"Groups"		   :   ["/dog/cat", "/cow/duck"]
+				}
+			]
+}

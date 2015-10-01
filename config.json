@@ -1,0 +1,10 @@
+{
+"zenoss_url":       "http://zenoss-424:8080",
+"zenoss_user":      "zenoss",
+"zenoss_password":  "zenoss",
+"db-host":          "zenoss-424",
+"db-port":          13306,
+"db-user":          "zenoss",
+"db-password":      "zenoss",
+"db-name":          "zenoss_zep"
+}
