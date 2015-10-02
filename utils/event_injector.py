@@ -220,6 +220,13 @@ class EventInjector(object):
 		cursor.execute(sql)
 		self.conn.commit()
 
+	def _parse_date(self, value):
+		""" parses dates in format 'X days ago' """
+		if isinstance(value, basestring) and "days ago" in value:
+			days = int(value.split()[0].strip())
+			value = (time.time() - days*24*60*60) * 1000
+		return value
+
 	def inject_event(self, event, archive):
 		""" """
 		if not self.id_tables_loaded:
@@ -240,13 +247,14 @@ class EventInjector(object):
 			db_event['status_id'] = self.event_status_translator[event.get(self.field_name_translator['status_id'], "Closed")]
 		db_event['severity_id'] = self.event_severity_translator[event.get(self.field_name_translator['severity_id'], "Error")]
 		db_event['update_time'] = ts
-		db_event['first_seen'] = event.get(self.field_name_translator['first_seen'], ts)
-		db_event['status_change'] = event.get(self.field_name_translator['status_change'], ts)
-		db_event['last_seen'] = event.get(self.field_name_translator['last_seen'], ts)
 		db_event['event_count'] = event.get(self.field_name_translator['event_count'], 1)
 		db_event['summary'] = event.get(self.field_name_translator['summary'], "zenoss_test: Test event")
 		db_event['message'] = event.get(self.field_name_translator['message'], "zenoss_test: Test event")
 		db_event['element_identifier'] = event.get(self.field_name_translator['element_identifier'], 1)
+
+		db_event['first_seen'] = self._parse_date(event.get(self.field_name_translator['first_seen'], ts))
+		db_event['status_change'] = self._parse_date(event.get(self.field_name_translator['status_change'], ts))
+		db_event['last_seen'] = self._parse_date(event.get(self.field_name_translator['last_seen'], ts))
 
 		# not null fields with an id table associated
 		event_class = event.get(self.field_name_translator['event_class_id'])

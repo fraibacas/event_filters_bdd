@@ -1,5 +1,7 @@
 
 from behave import *
+from datetime import datetime, timedelta
+
 import time
 
 @given('I can connect to the ZEP API')
@@ -150,7 +152,26 @@ def step_impl(context):
 	# this has already tested in @given('the sample events have been loaded and indexed')
 	pass
 
+def _parse_date(days_ago_str):
+	""" days_ago_str: string X days ago """
+	days = int(days_ago_str.split()[0].strip())
+	date_days_ago = datetime.now() - timedelta(days=days)
+
+	return "{0}-{1}-{2} 00:00:00".format(date_days_ago.year, date_days_ago.month, date_days_ago.day)
+
+
 @when('I add "{field_filter}" as filter for the "{field}"')
 def step_impl(context, field_filter, field):
+	if "Date Search" in context.scenario.name :
+		# we need to convert days ago in the proper filter
+		if "TO" in field_filter:  # date range filter
+			splitted_field_filter = field_filter.split("TO")
+			date1 = _parse_date(splitted_field_filter[0])
+			date2 = _parse_date(splitted_field_filter[1])
+			field_filter = "{0} TO {1}".format(date1, date2)
+		else: # normal filter
+			field_filter = _parse_date(field_filter.strip())
+
 	context.current_filter[field] = field_filter
+
 

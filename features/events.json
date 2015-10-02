@@ -58,9 +58,9 @@
 					"Systems"          :   "Systems_1",
 					"Device Priority"  :   "High",
 					"Production State" :   "Pre-Production",
-					"First Seen"       :   1443052800000,
-					"Last Seen"        :   1443052800000,
-					"State Change"     :   1443052800000
+					"First Seen"       :   "10 days ago",
+					"Last Seen"        :   "10 days ago",
+					"State Change"     :   "10 days ago"
 				},
 
 				{
@@ -88,9 +88,9 @@
 					"Systems"          :   "Systems_2",
 					"Device Priority"  :   "Highest",
 					"Production State" :   "Production",
-					"First Seen"       :   1443134289157,
-					"Last Seen"        :   1443134289157,
-					"State Change"     :   1443134289157
+					"First Seen"       :   "5 days ago",
+					"Last Seen"        :   "5 days ago",
+					"State Change"     :   "5 days ago"
 				},
 				{
 					"event_id"         :   "ip_evt_1",

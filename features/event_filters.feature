@@ -1,4 +1,13 @@
 
+################################################################################
+#
+#  This feature uses the events defined in events.json and the values in this 
+#  file must match the values in events.json
+#
+################################################################################
+
+
+
 Feature: Search for events using ZEP API
 	I wish to use filters to search for active and archived events in Zenoss
 
@@ -432,9 +441,10 @@ Feature: Search for events using ZEP API
 		Given I use the Summary field to filter only the relevant events
 		   ## events for this test have "zenoss_test" in the summary
 		and the following events have been created and indexed
-			     | EVENT_ID | First Seen          |  Last Seen           |
-			     | evt_1    | 2015-09-23 19:00:00 | 2015-09-23 19:00:00  |
-			     | evt_2    | 2015-09-24 17:38:09 | 2015-09-24 17:38:09  |
+			# First seen and last seen are converted when the events are created
+			     | EVENT_ID | First Seen    |  Last Seen    |
+			     | evt_1    |  10 days ago  |  10 days ago  |
+			     | evt_2    |  5 days ago   |  5 days ago   |
 		when I add "<FILTER>" as filter for the "<FIELD>"
 		and I send the request to the ZEP API
 		then I can see "<FOUND_EVENTS>" in the response
@@ -442,22 +452,25 @@ Feature: Search for events using ZEP API
 
 
 		Examples: Date Search
+		# Filters in this tests are calculated at the time of executing the test
 		###
-		|   FIELD       |  FILTER                |  FOUND_EVENTS   |  NOT_FOUND_EVENTS   |
-		|  First Seen   |  2015-09-28 20:00:00   |      ""         |  evt_1, evt_2       |
-		|  First Seen   |  2015-09-24 00:00:00   |     evt_2       |  evt_1              |
-		|  First Seen   |  2015-09-23 00:00:00   |  evt_1, evt_2   |  ""                 |
-		|  Last Seen    |  2015-09-28 20:00:00   |      ""         |  evt_1, evt_2       |
-		|  Last Seen    |  2015-09-24 00:00:00   |     evt_2       |  evt_1              |
-		|  Last Seen    |  2015-09-23 00:00:00   |  evt_1, evt_2   |  ""                 |
+		|   FIELD       |   FILTER      |  FOUND_EVENTS   |  NOT_FOUND_EVENTS   |
+		|  First Seen   |  2 days ago   |      ""         |  evt_1, evt_2       |
+		|  First Seen   |  6 days ago   |     evt_2       |  evt_1              |
+		|  First Seen   |  15 days ago  |  evt_1, evt_2   |  ""                 |
+		|  Last Seen    |  2 days ago   |      ""         |  evt_1, evt_2       |
+		|  Last Seen    |  6 days ago   |     evt_2       |  evt_1              |
+		|  Last Seen    |  15 days ago  |  evt_1, evt_2   |  ""                 |
 
 		Examples: Date Range Search
 		###
-		|   FIELD      |  FILTER                                      |  FOUND_EVENTS   |  NOT_FOUND_EVENTS   |
-		|  First Seen  |  2015-09-25 10:00:00 TO 2015-09-28 20:00:00  |      ""         |  evt_1, evt_2       |
-		|  First Seen  |  2015-09-23 10:00:00 TO 2015-09-24 00:00:00  |     evt_1       |  evt_2              |
-		|  First Seen  |  2015-09-23 10:00:00 TO 2015-09-24 23:00:00  |  evt_1, evt_2   |  ""                 |
-		|  Last Seen   |  2015-09-25 10:00:00 TO 2015-09-28 20:00:00  |      ""         |  evt_1, evt_2       |
-		|  Last Seen   |  2015-09-23 10:00:00 TO 2015-09-24 00:00:00  |     evt_1       |  evt_2              |
-		|  Last Seen   |  2015-09-23 10:00:00 TO 2015-09-24 23:00:00  |  evt_1, evt_2   |  ""                 |
+		|   FIELD      |  FILTER                      |  FOUND_EVENTS   |  NOT_FOUND_EVENTS   |
+		|  First Seen  |  3 days ago  TO  2 days ago  |      ""         |  evt_1, evt_2       |
+		|  First Seen  |  12 days ago TO  8 days ago  |     evt_1       |  evt_2              |
+		|  Last Seen   |  6 days ago  TO  4 days ago  |     evt_2       |  evt_1              |
+		|  First Seen  |  12 days ago TO  2 days ago  |  evt_1, evt_2   |  ""                 |
+		|  Last Seen   |  3 days ago  TO  2 days ago  |      ""         |  evt_1, evt_2       |
+		|  Last Seen   |  12 days ago TO  8 days ago  |     evt_1       |  evt_2              |
+		|  Last Seen   |  6 days ago  TO  4 days ago  |     evt_2       |  evt_1              |
+		|  Last Seen   |  12 days ago TO  2 days ago  |  evt_1, evt_2   |  ""                 |
 
